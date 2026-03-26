@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Cpu, Layers, RefreshCcw, Building2, CircleDollarSign, FileText, ShieldCheck } from "lucide-react";

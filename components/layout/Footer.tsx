@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Zap, Github, Twitter, Linkedin, Instagram } from "lucide-react";
 
 const footerLinks = {

@@ -1,4 +1,3 @@
-import React from "react";
 import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
 import Plans from "@/components/sections/Plans";

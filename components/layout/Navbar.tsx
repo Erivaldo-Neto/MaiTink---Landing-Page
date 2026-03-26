@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -73,7 +73,7 @@ const Navbar = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             {navLinks.map((link, index) => (
-              <React.Fragment key={link.name}>
+              <Fragment key={link.name}>
                 <a
                   href={link.href}
                   style={{
@@ -108,7 +108,7 @@ const Navbar = () => {
                     ·
                   </span>
                 )}
-              </React.Fragment>
+              </Fragment>
             ))}
           </motion.div>
 

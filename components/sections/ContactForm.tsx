@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -53,7 +53,7 @@ export default function ContactForm() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (_data: FormValues) => {
     setStatus("loading");
     // Simulando envio
     await new Promise((resolve) => setTimeout(resolve, 2000));
