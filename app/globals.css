@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0a0a0a;
+  --color-yellow: #ffed00;
+  --color-turquoise: #31ffce;
+  --color-white: #ffffff;
+
+  --font-display: var(--font-poppins);
+  --font-dm: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+:root {
+  --black: #0a0a0a;
+  --yellow: #ffed00;
+  --turquoise: #31ffce;
+  --white: #ffffff;
+}
+
+html, body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* Simple solid background definitions */
+.section-dark {
+  background-color: var(--black);
+  position: relative;
+}
+
+.section-yellow {
+  background-color: var(--yellow);
+  color: var(--black);
+  position: relative;
+}
+
+/* Typography Normalization */
+h1, h2, h3, h4 {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+/* Font Sizes */
+.h1-hero {
+  font-size: 36px;
+  line-height: 1.1;
+}
+
+@media (min-width: 1024px) {
+  .h1-hero {
+    font-size: 64px;
+  }
+}
+
+.h2-section {
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+@media (min-width: 1024px) {
+  .h2-section {
+    font-size: 48px;
+  }
+}
+
+.text-base {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .text-base {
+    font-size: 16px;
+  }
+}
+
+/* Simple Button Base */
+.btn-base {
+  height: 48px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}

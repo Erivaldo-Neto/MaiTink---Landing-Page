@@ -1,0 +1,76 @@
+export const SITE_DATA = {
+  name: "Maitink",
+  tagline: "Marketing com inteligência. Resultado sem limite.",
+  description: "Uma agência. Uma IA. Resultado sem limite. Automatize seu marketing com o poder da Inteligência Artificial.",
+  colors: {
+    black: "#0a0a0a",
+    yellow: "#ffed00",
+    turquoise: "#31ffce",
+    white: "#ffffff",
+  },
+  navLinks: [
+    { label: "Soluções", href: "#solucoes" },
+    { label: "Sobre", href: "#sobre" },
+    { label: "Planos", href: "#planos" },
+    { label: "FAQ", href: "#faq" },
+  ],
+  metrics: [
+    { label: "ROI Médio", value: "3x", suffix: "↑" },
+    { label: "Automação", value: "80", suffix: "%" },
+    { label: "Retenção", value: "98", suffix: "%" },
+  ],
+  solutions: [
+    {
+      id: "ads",
+      title: "Gestão de Ads com IA",
+      description: "Otimização em tempo real de lances e criativos usando redes neurais avançadas.",
+      metric: "ROI +120%",
+      benefit: "Redução de CPA garantida",
+      icon: "TrendingUp",
+    },
+    {
+      id: "content",
+      title: "Criação de Conteúdo",
+      description: "Geração de posts, roteiros e artigos com tom de voz personalizado via Claude e Gemini.",
+      metric: "5x Velocidade",
+      benefit: "Consistência de marca",
+      icon: "PenTool",
+    },
+    {
+      id: "automation",
+      title: "Automação de Leads",
+      description: "Chatbots inteligentes que qualificam e agendam reuniões sem intervenção humana.",
+      metric: "24/7 Ativo",
+      benefit: "Zero lead perdido",
+      icon: "Zap",
+    },
+    {
+      id: "analytics",
+      title: "BI Preditivo",
+      description: "Análise de dados para prever tendências do mercado e comportamento do consumidor.",
+      metric: "95% Precisão",
+      benefit: "Decisões baseadas em dados",
+      icon: "PieChart",
+    },
+  ],
+  pricing: [
+    {
+      name: "BASE",
+      price: "1.990",
+      features: ["3 canais de marketing", "Relatório mensal IA", "Suporte via ticket", "Otimização básica"],
+      highlight: false,
+    },
+    {
+      name: "TURBO",
+      price: "4.990",
+      features: ["Todos os canais", "Dashboard em tempo real", "Gerente dedicado", "Automação completa", "IA Orquestradora"],
+      highlight: true,
+    },
+    {
+      name: "ILIMITADO",
+      price: "Sob consulta",
+      features: ["Full Service", "Desenvolvimento customizado", "IA Treinada no seu negócio", "SLA de 2 horas"],
+      highlight: false,
+    },
+  ],
+};
