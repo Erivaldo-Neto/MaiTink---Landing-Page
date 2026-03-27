@@ -1,6 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ShinyButton from "@/components/ui/shiny-button";
+import AnimatedBorderButton from "@/components/ui/animated-border-button";
+
 
 /* ────────────────────────────────────────────────────────
    ANIMATIONS
@@ -79,30 +82,25 @@ const PriceCard = ({ name, price, description, buttonText, neonColor, delay }: P
       </p>
 
       {isTurbo ? (
-        <motion.button 
-          whileHover={{ 
-            scale: 1.02, 
-            translateY: -2,
-            boxShadow: "0 0 30px rgba(255,237,0,0.7), 0 0 60px rgba(255,237,0,0.4)" 
-          }}
-          className="mt-2 w-full rounded-lg bg-[#ffed00] py-4 font-bebas text-lg uppercase text-[#0a0a0a] transition-all duration-300 outline-none"
-          style={{ boxShadow: "0 0 20px rgba(255,237,0,0.5), 0 0 40px rgba(255,237,0,0.25)" }}
-        >
-          {buttonText}
-        </motion.button>
+        <a href="#contato" className="w-full mt-2">
+          <ShinyButton className="w-full h-14 text-lg">
+            {buttonText}
+          </ShinyButton>
+        </a>
       ) : (
-        <motion.button 
-          whileHover={{ 
-            scale: 1.02, 
-            translateY: -2,
-            boxShadow: "0 0 15px rgba(255,237,0,0.5)" 
-          }}
-          className="mt-2 w-full border-[1.5px] border-[#ffed00] bg-white/5 py-4 font-bebas text-lg uppercase text-[#ffed00] transition-all duration-300 outline-none"
-          style={{ boxShadow: "0 0 10px rgba(255,237,0,0.3)" }}
-        >
-          {buttonText}
-        </motion.button>
+        <a href="#contato" className="w-full mt-2">
+          {neonColor === "yellow" ? (
+             <AnimatedBorderButton className="w-full h-14 text-lg">
+               {buttonText}
+             </AnimatedBorderButton>
+          ) : (
+            <ShinyButton className="w-full h-14 text-lg">
+              {buttonText}
+            </ShinyButton>
+          )}
+        </a>
       )}
+
     </motion.div>
   );
 };
@@ -216,13 +214,12 @@ const Plans = () => {
             </p>
           </div>
 
-          <motion.button 
-            whileHover={{ scale: 1.02, translateY: -2, boxShadow: "0 0 15px rgba(255,237,0,0.5)" }}
-            className="whitespace-nowrap border-[1.5px] border-[#ffed00] bg-white/5 px-8 py-4 font-bebas text-lg uppercase text-[#ffed00] transition-all duration-300 outline-none w-full lg:w-auto"
-            style={{ boxShadow: "0 0 10px rgba(255,237,0,0.3)" }}
-          >
-            QUERO UM PLANO PERSONALIZADO →
-          </motion.button>
+          <a href="#contato" className="w-full lg:w-auto">
+            <ShinyButton className="w-full px-8 h-14 text-[clamp(0.85rem,2.5vw,1.1rem)]">
+              QUERO UM PLANO PERSONALIZADO →
+            </ShinyButton>
+          </a>
+
         </motion.div>
 
       </div>

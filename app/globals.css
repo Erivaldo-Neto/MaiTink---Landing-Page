@@ -97,3 +97,15 @@ h1, h2, h3, h4 {
   transition: all 0.2s ease;
   font-size: 14px;
 }
+
+@keyframes borderSlide {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@layer utilities {
+  .animate-border-slide {
+    animation: borderSlide 3s linear infinite;
+  }
+}
+

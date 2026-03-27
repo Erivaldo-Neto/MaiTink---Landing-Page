@@ -3,6 +3,8 @@
 import { useState, useEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ShinyButton from "@/components/ui/shiny-button";
+
 
 const navLinks = [
   { name: "Início", href: "#" },
@@ -32,13 +34,10 @@ const Navbar = () => {
         }`}
       >
         <div
+          className="mx-auto flex items-center justify-between"
           style={{
             maxWidth: "1440px",
-            margin: "0 auto",
             padding: "0 clamp(24px, 5vw, 96px)",
-            display: "grid",
-            gridTemplateColumns: "1fr auto 1fr",
-            alignItems: "center",
           }}
         >
           {/* ── Logo ── */}
@@ -59,8 +58,8 @@ const Navbar = () => {
                 lineHeight: 1,
               }}
             >
-              <span style={{ color: "#31ffce" }}>MAI</span>
-              <span style={{ color: "#ffffff" }}>tink</span>
+              <span className="text-[#31ffce]">MAI</span>
+              <span className="text-white">tink</span>
             </span>
           </motion.a>
 
@@ -114,14 +113,15 @@ const Navbar = () => {
 
           {/* ── Mobile hamburger ── */}
           <button
-            className="lg:hidden text-white p-1"
-            style={{ justifySelf: "end" }}
+            className="lg:hidden text-white p-1 ml-auto"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+            style={{ position: 'relative', zIndex: 60 }}
           >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
+
       </nav>
 
       {/* ── Mobile overlay menu ── */}
@@ -172,31 +172,13 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <a
-              href="#contato"
+            <ShinyButton
               onClick={() => setIsOpen(false)}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "rgba(49,255,206,0.10)",
-                color: "#31ffce",
-                fontFamily: "var(--font-poppins), Poppins, sans-serif",
-                fontWeight: 700,
-                fontSize: "14px",
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                textDecoration: "none",
-                padding: "0 32px",
-                height: "48px",
-                borderRadius: "8px",
-                border: "1.5px solid rgba(49,255,206,0.60)",
-                width: "100%",
-                maxWidth: "320px",
-              }}
+              className="w-full max-w-[320px] h-14"
             >
               Diagnóstico Gratuito
-            </a>
+            </ShinyButton>
+
           </motion.div>
         )}
       </AnimatePresence>

@@ -134,11 +134,13 @@ export default function About() {
 
             {/* Paragraphs */}
             <div className="space-y-6 max-w-2xl">
-              <motion.p custom={4} variants={fadeUp} className="text-white/75 font-[var(--font-dm-sans)] text-lg leading-relaxed">
+              <motion.p custom={4} variants={fadeUp} className="text-white font-[var(--font-dm-sans)] text-lg leading-relaxed">
+
                 A Maitink nasceu da frustração com agências tradicionais que entregam pouco,
                 cobram muito e demoram demais.
               </motion.p>
-              <motion.p custom={5} variants={fadeUp} className="text-white/75 font-[var(--font-dm-sans)] text-lg leading-relaxed">
+              <motion.p custom={5} variants={fadeUp} className="text-white font-[var(--font-dm-sans)] text-lg leading-relaxed">
+
                 Nossa missão é colocar as <span style={pillStyle}>IAs mais poderosas</span> do mundo
                 a serviço da sua empresa.
               </motion.p>
@@ -161,9 +163,10 @@ export default function About() {
                   className="flex flex-col space-y-4"
                 >
                   <item.icon size={28} style={{ color: "#31ffce", filter: "drop-shadow(0 0 10px rgba(49, 255, 206, 0.6))" }} />
-                  <p className="text-white/70 text-sm leading-relaxed font-[var(--font-dm-sans)]">
+                  <p className="text-white text-sm leading-relaxed font-[var(--font-dm-sans)]">
                     {item.text}
                   </p>
+
                 </motion.div>
               ))}
             </div>
@@ -191,9 +194,10 @@ export default function About() {
                       color="#31ffce"
                     />
                   </div>
-                  <span className="font-[var(--font-poppins)] uppercase text-[10px] tracking-widest text-white/50 font-bold">
+                  <span className="font-[var(--font-poppins)] uppercase text-[10px] tracking-widest text-white font-bold">
                     {metric.label}
                   </span>
+
                 </motion.div>
               ))}
             </div>

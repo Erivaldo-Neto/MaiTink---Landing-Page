@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import ShinyButton from "@/components/ui/shiny-button";
+import AnimatedBorderButton from "@/components/ui/animated-border-button";
+
 
 /* ─── Typewriter loop hook ────────────────────────────────────── */
 function useTypewriter(
@@ -104,15 +107,19 @@ const Hero = () => {
         aria-hidden="true"
         animate={floatAnim}
       >
-        <Image
-          src="/assets/AI_Robotic_Hand-HeroSection.webp"
-          alt="Mão robótica segurando cérebro de IA"
-          fill
-          priority
-          quality={90}
-          style={{ objectFit: "contain", objectPosition: "center bottom" }}
-        />
+        <div className="hs-graphic-inner">
+          <Image
+            src="/assets/AI_Robotic_Hand-HeroSection.webp"
+            alt="Mão robótica segurando cérebro de IA"
+            width={480}
+            height={560}
+            priority
+            quality={90}
+            className="hs-img"
+          />
+        </div>
       </motion.div>
+
 
       {/* ── Main content ── */}
       <div className="hs-wrap">
@@ -146,10 +153,19 @@ const Hero = () => {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="hs-ctas">
-            <a href="#contato" className="cta-a">Agendar uma reunião</a>
-            <a href="#contato" className="cta-b">Solicitar diagnóstico gratuito</a>
+          <motion.div variants={fadeUp} className="hs-ctas text-center md:text-left">
+            <a href="#contato" className="block md:inline-block w-full md:w-auto">
+              <ShinyButton className="w-full md:w-auto px-10 h-[52px] text-sm md:text-base">
+                Agendar uma reunião
+              </ShinyButton>
+            </a>
+            <a href="#contato" className="block md:inline-block w-full md:w-auto">
+              <AnimatedBorderButton className="w-full md:w-auto px-10 h-[52px] text-sm md:text-base">
+                Solicitar diagnóstico gratuito
+              </AnimatedBorderButton>
+            </a>
           </motion.div>
+
         </motion.div>
       </div>
 
@@ -213,29 +229,42 @@ const Hero = () => {
 
         /* ───────────────────────────────────────
            GRAPHIC — DESKTOP
-           Grande, ancorado à direita/baixo.
-           A mão fica perto da borda inferior mas sem encostar.
         ─────────────────────────────────────── */
         .hs-graphic {
           position: absolute;
           z-index: 2;
-          /*
-            Âncora à esquerda no ponto médio da página (50%).
-            Largura de 58% → ocupa de 50% até 108%, centrado na metade direita.
-            objectPosition: center bottom mantém a imagem centrada no container.
-          */
-          left: 50%;
-          right: -8%;
-          bottom: -4%;          /* mais próximo da borda inferior, sem encostar */
+          left: 54%;
+          right: -4%;
+          bottom: 0px;
           top: 0;
           pointer-events: none;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+        }
+
+        .hs-graphic-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
           filter:
             drop-shadow(0 0 52px rgba(49,255,206,0.48))
             drop-shadow(0 0 110px rgba(49,255,206,0.20));
         }
 
+        .hs-img {
+          width: auto;
+          height: 90%;
+          max-height: 85vh;
+          object-fit: contain;
+          object-position: bottom;
+        }
+
         /* ───────────────────────────────────────
-           CONTENT WRAPPER — grade invisível 12-col
+           CONTENT WRAPPER
         ─────────────────────────────────────── */
         .hs-wrap {
           position: relative;
@@ -244,255 +273,172 @@ const Hero = () => {
           max-width: 1440px;
           margin: 0 auto;
           padding: 0 clamp(28px, 6vw, 100px);
-          padding-top: 84px;   /* navbar offset */
+          padding-top: 84px;
           height: 100%;
           display: flex;
           align-items: center;
         }
 
-        /* Content: colunas 1-6 de 12 (~50%) */
         .hs-content {
-          width: 50%;
+          width: 55%;
           display: flex;
           flex-direction: column;
         }
-
-        /* ───────────────────────────────────────
-           TITLE STACK
-        ─────────────────────────────────────── */
-        .hs-titles { margin-bottom: 18px; }
+        
+        .hs-titles { margin-bottom: 24px; }
 
         .ht {
           font-family: var(--font-poppins), Poppins, sans-serif;
-          font-weight: 700;           /* 700 = bold mas não excessivo */
+          font-weight: 700;
           text-transform: uppercase;
-          line-height: 1.06;
-          letter-spacing: -0.015em;
+          line-height: 1.02;
+          letter-spacing: -0.02em;
           margin: 0;
-          white-space: nowrap;        /* impede quebra de linha em todas as linhas */
-          /*
-            clamp menor que antes: max 64px (era 80px).
-            Garante que "ESCALE RESULTADOS" não quebre
-            e deixa espaço para subtítulo + parágrafo + botões.
-          */
-          font-size: clamp(28px, 4.2vw, 64px);
+          white-space: nowrap;
+          font-size: clamp(32px, 4.8vw, 76px);
         }
 
         .ht-w { color: #ffffff; }
         .ht-t { color: #31ffce; }
         .ht-y { color: #ffed00; }
 
-        /* ───────────────────────────────────────
-           TAGLINE
-        ─────────────────────────────────────── */
         .hs-tag {
           font-family: var(--font-poppins), Poppins, sans-serif;
           font-weight: 600;
-          font-size: clamp(15px, 1.35vw, 20px);
+          font-size: clamp(16px, 1.4vw, 22px);
           color: #31ffce;
-          margin: 0 0 12px 0;
+          margin: 0 0 14px 0;
           line-height: 1.4;
           letter-spacing: -0.01em;
         }
 
-        /* ───────────────────────────────────────
-           BODY TEXT
-        ─────────────────────────────────────── */
         .hs-body {
           font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
-          font-size: clamp(12.5px, 0.95vw, 15px);
-          color: rgba(255,255,255,0.66);
-          line-height: 1.70;
-          max-width: 420px;
-          margin: 0 0 24px 0;
+          font-size: clamp(14px, 1vw, 16px);
+          color: rgba(255,255,255,0.7);
+          line-height: 1.7;
+          max-width: 480px;
+          margin: 0 0 32px 0;
         }
 
-        /* ───────────────────────────────────────
-           CTA BUTTONS
-        ─────────────────────────────────────── */
         .hs-ctas {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 16px;
           align-items: center;
         }
-
-        /* Primary — amarelo, borda-radius 8px, glow hover */
-        .cta-a {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: #ffed00;
-          color: #0a0a0a;
-          font-family: var(--font-poppins), Poppins, sans-serif;
-          font-weight: 700;
-          font-size: clamp(11px, 0.88vw, 13px);
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-          padding: 0 22px;
-          height: 44px;
-          border-radius: 8px;
-          text-decoration: none;
-          border: 2px solid transparent;
-          box-shadow: 0 4px 18px rgba(255,237,0,0.22);
-          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-          cursor: pointer;
-          white-space: nowrap;
-        }
-        .cta-a:hover {
-          transform: translateY(-2px);
-          background: #ffe200;
-          box-shadow: 0 0 0 3px rgba(255,237,0,0.28), 0 8px 28px rgba(255,237,0,0.38);
-        }
-        .cta-a:active { transform: translateY(0); }
-
-        /* Secondary — outline turquesa */
-        .cta-b {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(49,255,206,0.06);
-          color: #ffffff;
-          font-family: var(--font-poppins), Poppins, sans-serif;
-          font-weight: 700;
-          font-size: clamp(11px, 0.88vw, 13px);
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-          padding: 0 22px;
-          height: 44px;
-          border-radius: 8px;
-          border: 1.5px solid rgba(49,255,206,0.60);
-          text-decoration: none;
-          box-shadow: none;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-          cursor: pointer;
-          white-space: nowrap;
-        }
-        .cta-b:hover {
-          transform: translateY(-2px);
-          background: rgba(49,255,206,0.12);
-          color: #31ffce;
-          border-color: #31ffce;
-          box-shadow: 0 0 0 3px rgba(49,255,206,0.16), 0 8px 24px rgba(49,255,206,0.20);
-        }
-        .cta-b:active { transform: translateY(0); }
-
 
         /* ═══════════════════════════════════════
            TABLET  768 – 1023px
         ═══════════════════════════════════════ */
         @media (max-width: 1023px) and (min-width: 768px) {
-          .hs-content { width: 56%; }
-
-          .ht { font-size: clamp(24px, 3.8vw, 46px); white-space: nowrap; }
-
-          .hs-graphic {
-            left: 48%;
-            right: -6%;
-            bottom: -3%;
-            top: 0;
-          }
+          .hs-content { width: 60%; }
+          .ht { font-size: clamp(28px, 4vw, 54px); }
+          .hs-graphic { left: 45%; }
         }
-
 
         /* ═══════════════════════════════════════
            MOBILE  < 768px
-           
-           Estrutura:
-           - Gráfico: absolute, topo da tela, grande, visível
-           - Texto: ancorado na parte de baixo
-           - Só a base/palma da mão fica ligeiramente
-             atrás do início do título (z-index da imagem < z-index do texto)
         ═══════════════════════════════════════ */
         @media (max-width: 767px) {
-
-          /* Shell sem scroll */
           .hs {
-            height: 100vh;
-            overflow: hidden;
-            align-items: flex-end;   /* ancora conteúdo na base */
+            height: auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            overflow-y: auto;
+            overflow-x: hidden;
           }
 
-          /* Overlay no mobile: gradiente de baixo p/ cima
-             deixa topo transparente (imagem visível) e
-             escurece embaixo (texto legível) */
+          .hs-bg { position: fixed; inset: 0; }
+          
           .hs-overlay {
             background: linear-gradient(
-              to top,
-              rgba(3, 9, 16, 0.96) 0%,
-              rgba(3, 9, 16, 0.85) 30%,
-              rgba(3, 9, 16, 0.50) 55%,
-              rgba(3, 9, 16, 0.10) 80%,
-              rgba(3, 9, 16, 0.00) 100%
+              to bottom,
+              rgba(3, 9, 16, 0.4) 0%,
+              rgba(3, 9, 16, 0.8) 40%,
+              rgba(3, 9, 16, 0.95) 70%,
+              rgba(3, 9, 16, 1) 100%
             );
           }
 
-          /*
-            Gráfico: inicia no topo da seção.
-            z-index: 3 → fica ATRÁS do texto (z-10), mas na frente do overlay (z-1).
-            A base da mão (bottom: 40%) alcança o início da área de texto,
-            criando o efeito de sobreposição parcial desejado.
-          */
           .hs-graphic {
-            right: -8%;
+            position: relative;
+            left: 0;
+            right: 0;
             top: 0;
             bottom: auto;
-            width: 118%;         /* era 108%, aumentado */
-            height: 68vh;
-            z-index: 3;
-            filter:
-              drop-shadow(0 0 36px rgba(49,255,206,0.42))
-              drop-shadow(0 0 70px rgba(49,255,206,0.18));
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            margin: 0 auto 20px;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
-          /* Wrapper: tudo na base, sem padding-top grande */
+          .hs-graphic-inner {
+            filter: drop-shadow(0 0 30px rgba(49,255,206,0.4));
+          }
+
+          .hs-img {
+            width: 100%;
+            height: auto;
+            max-height: 40vh;
+          }
+
           .hs-wrap {
-            padding: 0 20px 36px;
+            padding: 0 24px;
             padding-top: 0;
             align-items: flex-end;
-            height: 100%;
+            height: auto;
+            display: block;
           }
 
-          /* Conteúdo ocupa largura total */
           .hs-content {
             width: 100%;
-            z-index: 10;  /* texto sobre a imagem */
+            text-align: center;
+            align-items: center;
           }
 
-          /* Títulos: menores no mobile, mas ainda impactantes */
           .ht {
-            font-size: clamp(30px, 9.5vw, 46px);
-            white-space: nowrap;
-            letter-spacing: -0.02em;
+            font-size: clamp(34px, 10vw, 52px);
+            white-space: normal;
+            line-height: 1.1;
           }
 
-          .hs-titles { margin-bottom: 10px; }
+          .hs-titles { margin-bottom: 20px; }
 
           .hs-tag {
-            font-size: 15px;
-            margin-bottom: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
           }
 
           .hs-body {
-            font-size: 12.5px;
+            font-size: 14px;
             max-width: 100%;
-            margin-bottom: 18px;
-            line-height: 1.60;
+            margin-bottom: 32px;
+            line-height: 1.6;
           }
 
           .hs-ctas {
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-direction: column;
+            width: 100%;
+            max-width: 320px;
+            gap: 12px;
           }
-
-          .cta-a, .cta-b {
-            flex: 1 1 auto;
-            min-width: 130px;
-            font-size: 11.5px;
-            height: 42px;
-            padding: 0 14px;
+          
+          .hs-ctas > a {
+            width: 100%;
+          }
+          :global(.hs-ctas button) {
+            width: 100% !important;
           }
         }
 

@@ -6,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import ShinyButton from "@/components/ui/shiny-button";
+import { cn } from "@/lib/utils";
+
 
 /* ────────────────────────────────────────────────────────
    SCHEMA
@@ -294,33 +297,34 @@ export default function ContactForm() {
             </div>
 
             {/* BOTÃO */}
-            <motion.button
-              type="submit"
-              disabled={status !== "idle"}
-              whileHover={status === "idle" ? { scale: 1.01, translateY: -3 } : {}}
-              whileTap={status === "idle" ? { scale: 0.99 } : {}}
-              className={`w-full h-14 rounded-[0.6rem] font-bebas text-[1.4rem] uppercase tracking-widest transition-all duration-500 flex items-center justify-center gap-3
-                ${status === "idle" ? "bg-[#ffed00] text-[#0a0a0a] shadow-[0_0_20px_rgba(255,237,0,0.4),0_0_40px_rgba(255,237,0,0.2)]" : ""}
-                ${status === "loading" ? "bg-white/10 text-white/40 cursor-not-allowed" : ""}
-                ${status === "success" ? "bg-[#31ffce] text-[#0a0a0a]" : ""}
-              `}
-            >
-              {status === "idle" && "EXECUTAR DIAGNÓSTICO →"}
+            <div className="w-full h-14 relative mt-4">
+              {status === "idle" && (
+                <ShinyButton
+                  type="submit"
+                  className="w-full h-14 text-[clamp(1rem,3vw,1.4rem)] flex items-center justify-center gap-2"
+                >
+                  <span className="whitespace-nowrap">EXECUTAR DIAGNÓSTICO</span>
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                </ShinyButton>
+              )}
+              
               {status === "loading" && (
-                <>
+                <div className="w-full h-14 rounded-[0.6rem] bg-white/10 text-white/40 flex items-center justify-center gap-3">
                   <Loader2 className="animate-spin text-[#31ffce]" size={24} />
                   Enviando...
-                </>
-              )}
-              {status === "success" && (
-                <div className="flex items-center gap-2 text-center md:gap-3 px-4">
-                  <CheckCircle2 size={24} className="shrink-0" />
-                  <span className="text-sm md:text-[1.2rem] leading-tight">
-                    ✓ Diagnóstico solicitado! Entraremos em contato em breve.
-                  </span>
                 </div>
               )}
-            </motion.button>
+
+              {status === "success" && (
+                <div className="w-full h-14 rounded-[0.6rem] bg-[#31ffce] text-[#0a0a0a] flex items-center justify-center gap-2 px-4 shadow-[0_0_20px_rgba(49,255,206,0.4)]">
+                   <CheckCircle2 size={24} className="shrink-0" />
+                   <span className="text-sm md:text-[1.2rem] leading-tight font-bold uppercase font-bebas">
+                     ✓ Diagnóstico solicitado! Entraremos em contato em breve.
+                   </span>
+                </div>
+              )}
+            </div>
+
           </form>
         </motion.div>
 

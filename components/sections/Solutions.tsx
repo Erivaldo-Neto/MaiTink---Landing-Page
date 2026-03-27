@@ -366,9 +366,10 @@ function BezierConnections({
 
   return (
     <svg
-      className="absolute left-0 top-0 w-full pointer-events-none"
+      className="absolute left-0 top-0 w-full pointer-events-none hidden md:block"
       style={{ height: svgHeight || "100%", overflow: "visible", zIndex: 10 }}
     >
+
       <defs>
         {/* Arrow markers */}
         <marker

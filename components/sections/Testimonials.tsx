@@ -114,9 +114,9 @@ export default function Testimonials() {
         </div>
 
         {/* MARQUEE CONTAINER */}
-        <div className="relative pt-12 pb-12"> {/* Added top/bottom padding to fix clipping */}
+        <div className="relative pt-12 pb-12 overflow-hidden mx-[-24px] md:mx-[-48px]"> 
           <motion.div
-            className="flex gap-6 w-max"
+            className="flex gap-6 w-max px-6 md:px-12"
             animate={{ x: isPaused ? undefined : ["0%", "-33.33%"] }}
             transition={{
               duration: 35,
@@ -129,8 +129,8 @@ export default function Testimonials() {
             {extendedTestimonials.map((t, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.05, zIndex: 50 }}
-                className="relative flex-shrink-0 w-[340px] md:w-[380px] bg-[rgba(10,10,10,0.6)] backdrop-blur-[24px] rounded-[1.25rem] p-8 transition-shadow duration-300"
+                whileHover={{ scale: 1.02, zIndex: 50 }}
+                className="relative flex-shrink-0 w-[320px] md:w-[380px] bg-[rgba(10,10,10,0.6)] backdrop-blur-[24px] rounded-[1.5rem] p-8 transition-shadow duration-300"
                 style={{
                   boxShadow: `0 0 0 1.5px ${t.color}40, 0 0 15px ${t.color}20`,
                 }}
@@ -150,8 +150,8 @@ export default function Testimonials() {
 
                 {/* Quote */}
                 <div className="relative mb-8 min-h-[140px]">
-                  <span className="absolute -top-4 -left-2 font-bebas text-[5rem] leading-none" style={{ color: `${t.color}33` }}>"</span>
-                  <p className="font-dm italic text-[1rem] text-white/80 leading-relaxed relative z-10 pt-4">
+                  <span className="absolute -top-4 -left-2 font-bebas text-[5rem] leading-none opacity-20" style={{ color: t.color }}>"</span>
+                  <p className="font-dm italic text-[0.95rem] text-white/80 leading-relaxed relative z-10 pt-4">
                     "{t.text}"
                   </p>
                 </div>
@@ -173,10 +173,12 @@ export default function Testimonials() {
             ))}
           </motion.div>
           
-          {/* Faded edges */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
+          {/* Faded edges — Edge to edge coverage */}
+          <div className="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10 pointer-events-none" />
         </div>
+
+
 
       </div>
     </section>
