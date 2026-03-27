@@ -25,7 +25,7 @@ const animationProps = {
   },
 } as AnimationProps & HTMLMotionProps<"button">;
 
-interface ShinyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ShinyButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary";
