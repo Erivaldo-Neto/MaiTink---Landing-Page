@@ -114,70 +114,118 @@ export default function Testimonials() {
           </motion.h2>
         </div>
 
-        {/* MARQUEE CONTAINER */}
-        <div className="relative pt-12 pb-12 overflow-hidden mx-[-24px] md:mx-[-48px]"> 
-          <motion.div
-            className="flex gap-6 w-max px-6 md:px-12"
-            animate={{ x: isPaused ? undefined : ["0%", "-33.33%"] }}
-            transition={{
-              duration: 35,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {extendedTestimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.02, zIndex: 50 }}
-                className="relative flex-shrink-0 w-[320px] md:w-[380px] bg-[rgba(10,10,10,0.6)] backdrop-blur-[24px] rounded-[1.5rem] p-8 transition-shadow duration-300"
-                style={{
-                  boxShadow: `0 0 0 1.5px ${t.color}40, 0 0 15px ${t.color}20`,
-                }}
+        {/* 
+            MARQUEE CONTAINER — TEMPORARILY DISABLED FOR FULL-PAGE PHOTOGRAPHY
+            Use 'flex-wrap' and justify-center to show all original cards at once.
+            When you're ready to reactivate the carousel, swap this for the marquee code below.
+        */}
+        <div className="flex flex-wrap justify-center gap-8 py-12">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              custom={i}
+              whileHover={{ scale: 1.02, zIndex: 50 }}
+              className="relative flex-shrink-0 w-[320px] md:w-[380px] bg-[rgba(10,10,10,0.6)] backdrop-blur-[24px] rounded-[1.5rem] p-8 transition-shadow duration-300"
+              style={{
+                boxShadow: `0 0 0 1.5px ${t.color}40, 0 0 15px ${t.color}20`,
+              }}
+            >
+              {/* Metric with softened neon */}
+              <div className="mb-6">
+                <span
+                  className="font-mono font-bold text-[1.6rem]"
+                  style={{ 
+                    color: t.color,
+                    textShadow: `0 0 5px ${t.color}66` 
+                  }}
+                >
+                  {t.metric}
+                </span>
+              </div>
+
+              {/* Quote */}
+              <div className="relative mb-8 min-h-[140px]">
+                <span className="absolute -top-4 -left-2 font-bebas text-[5rem] leading-none opacity-20" style={{ color: t.color }}>"</span>
+                <p className="font-dm italic text-[0.95rem] text-white/80 leading-relaxed relative z-10 pt-4">
+                  "{t.text}"
+                </p>
+              </div>
+
+              {/* Separator */}
+              <div className="h-[1px] w-full bg-white/10 my-6" />
+
+              {/* Footer */}
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border font-dm font-bold text-white text-lg backdrop-blur-md" style={{ borderColor: `${t.color}66` }}>
+                  {t.name.charAt(0)}
+                </div>
+                <div>
+                  <h4 className="font-dm font-semibold text-white leading-tight">{t.name}</h4>
+                  <p className="font-dm text-[0.8rem] text-white/50">{t.company}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 
+            REACTIVE MARQUEE VERSION — FIXED FOR SMOOTH PAUSE/RESUME
+            To reactive, uncomment this and comment out the flex-wrap div above.
+
+            <div className="relative pt-12 pb-12 overflow-hidden mx-[-24px] md:mx-[-48px]"> 
+              <div 
+                className="flex gap-6 w-max px-6 md:px-12 animate-marquee hover:[animation-play-state:paused]"
               >
-                {/* Metric with softened neon */}
-                <div className="mb-6">
-                  <span
-                    className="font-mono font-bold text-[1.6rem]"
-                    style={{ 
-                      color: t.color,
-                      textShadow: `0 0 5px ${t.color}66` 
+                {extendedTestimonials.map((t, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.02, zIndex: 50 }}
+                    className="relative flex-shrink-0 w-[320px] md:w-[380px] bg-[rgba(10,10,10,0.6)] backdrop-blur-[24px] rounded-[1.5rem] p-8 transition-shadow duration-300"
+                    style={{
+                      boxShadow: `0 0 0 1.5px ${t.color}40, 0 0 15px ${t.color}20`,
                     }}
                   >
-                    {t.metric}
-                  </span>
-                </div>
+                    <div className="mb-6">
+                      <span
+                        className="font-mono font-bold text-[1.6rem]"
+                        style={{ 
+                          color: t.color,
+                          textShadow: `0 0 5px ${t.color}66` 
+                        }}
+                      >
+                        {t.metric}
+                      </span>
+                    </div>
 
-                {/* Quote */}
-                <div className="relative mb-8 min-h-[140px]">
-                  <span className="absolute -top-4 -left-2 font-bebas text-[5rem] leading-none opacity-20" style={{ color: t.color }}>"</span>
-                  <p className="font-dm italic text-[0.95rem] text-white/80 leading-relaxed relative z-10 pt-4">
-                    "{t.text}"
-                  </p>
-                </div>
+                    <div className="relative mb-8 min-h-[140px]">
+                      <span className="absolute -top-4 -left-2 font-bebas text-[5rem] leading-none opacity-20" style={{ color: t.color }}>"</span>
+                      <p className="font-dm italic text-[0.95rem] text-white/80 leading-relaxed relative z-10 pt-4">
+                        "{t.text}"
+                      </p>
+                    </div>
 
-                {/* Separator */}
-                <div className="h-[1px] w-full bg-white/10 my-6" />
+                    <div className="h-[1px] w-full bg-white/10 my-6" />
 
-                {/* Footer */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border font-dm font-bold text-white text-lg backdrop-blur-md" style={{ borderColor: `${t.color}66` }}>
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h4 className="font-dm font-semibold text-white leading-tight">{t.name}</h4>
-                    <p className="font-dm text-[0.8rem] text-white/50">{t.company}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-          
-          {/* Faded edges — Edge to edge coverage */}
-          <div className="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10 pointer-events-none" />
-        </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border font-dm font-bold text-white text-lg backdrop-blur-md" style={{ borderColor: `${t.color}66` }}>
+                        {t.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="font-dm font-semibold text-white leading-tight">{t.name}</h4>
+                        <p className="font-dm text-[0.8rem] text-white/50">{t.company}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              <div className="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent z-10 pointer-events-none" />
+            </div>
+        */}
 
 
 

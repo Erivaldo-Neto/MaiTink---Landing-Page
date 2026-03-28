@@ -103,9 +103,17 @@ h1, h2, h3, h4 {
   100% { background-position: 200% 0; }
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333333%); }
+}
+
 @layer utilities {
   .animate-border-slide {
     animation: borderSlide 3s linear infinite;
+  }
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
   }
 }
 
